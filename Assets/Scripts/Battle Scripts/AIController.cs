@@ -68,27 +68,11 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //Press Space to see next move
-        if (Input.GetKeyUp(KeyCode.Space)) 
-        {
-            NextMove();
-        }
-    }
-
     public void NextMove()
     {
         if (selection == moveList.Count)
         {
-            selection = 0;
-            move = Move.Idle;
-
-            random = Random.Range(0, moveSequence.Count);
-
-            moveList = moveSequence[random].moveList;
-            moveListName = moveSequence[random].name;
-
+            ChangeMoveList();
         }
         else 
         {
@@ -99,14 +83,28 @@ public class AIController : MonoBehaviour
 
     public void Hit() 
     {
+        ChangeMoveList();
+        isHit = false;
+    }
+
+    public void ChangeMoveList() 
+    {
         move = Move.Idle;
         selection = 0;
+
         random = Random.Range(0, moveSequence.Count);
 
         moveList = moveSequence[random].moveList;
         moveListName = moveSequence[random].name;
-        isHit = false;
     }
 
+    public void ChangeMoveList(List<Move> moveSequence)
+    {
+        move = Move.Idle;
+        selection = 0;
+
+        moveList = moveSequence;
+        moveListName = moveSequence.ToString();
+    }
 
 }

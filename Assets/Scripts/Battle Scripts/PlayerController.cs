@@ -8,24 +8,25 @@ public class PlayerController : MonoBehaviour
     public Move move = Move.Idle;
 
     public string characterName;
-    public int health, attack, speed;
+    public int health, attack, speed, stamina;
 
     public bool isKnockedOut = false;
     public bool isHit;
+    public bool isTired = false;
 
     KeyCode LPunchKey = KeyCode.Z;
     KeyCode RPunchKey = KeyCode.X;
     KeyCode LDodgeKey = KeyCode.LeftArrow;
     KeyCode RDodgeKey = KeyCode.RightArrow;
 
-    private bool isNotMoving = true;
+    bool isNotMoving = true;
 
     // Start is called before the first frame update
     void Start()
     {
         if (character == null)
         {
-            Debug.LogError("Player Character Script is missing");
+            Debug.Log("Player Character Script is missing: Check Character Folder for reference");
         }
         else
         {
@@ -33,26 +34,62 @@ public class PlayerController : MonoBehaviour
             health = character.hp;
             attack = character.atk;
             speed = character.spd;
+            stamina = 5;
         }
 
         StartCoroutine(Action());
+        StartCoroutine(StaminaRegen());
     }
+
+    IEnumerator StaminaRegen()
+    {
+        while (true)
+        {
+            if (stamina < 5 && isTired==false)
+            {
+                yield return new WaitForSeconds(5f); // Wait for 5 seconds
+                stamina = 5; 
+            }
+            else
+            {
+                yield return null; // If stamina is full, just wait for the next frame
+            }
+        }
+    }
+
 
     IEnumerator Action()
     {
         while (true) // Continuously check for input
         {
-            if (isNotMoving)
+            if (!isTired)
             {
-                move = GetMoveInput();
-                if (move != Move.Idle)
+                if (isNotMoving)
                 {
-                    isNotMoving = false;
-                    yield return new WaitForSeconds(0.5f);
-                    isNotMoving = true;
+                    move = GetMoveInput();
+                    if (move != Move.Idle)
+                    {
+                        isNotMoving = false;
+                        if (move == Move.LPunch || move == Move.RPunch)
+                        {
+                            stamina-=1;
+                        }
+                        yield return new WaitForSeconds(0.5f);
+                        isNotMoving = true;
+                    }
                 }
+                yield return null; // Wait for next frame
             }
-            yield return null; // Wait for next frame
+
+            if (stamina <= 0) 
+            {
+                isTired = true;
+                move = Move.Idle;
+                yield return new WaitForSeconds(5f);
+                stamina = 5;
+                isTired = false;
+            }
+
         }
     }
 

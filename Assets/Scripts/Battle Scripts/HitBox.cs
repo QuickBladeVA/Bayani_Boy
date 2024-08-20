@@ -42,17 +42,35 @@ public class HitBox : MonoBehaviour
 
     void Hit(PlayerController self, AIController target, Move punch, Move dodge)
     {
-        if (self.move == punch && target.move != dodge)
+        // Check if self uses punch and target does not use dodge or any punch move
+        if (self.move == punch)
         {
-            target.isHit = true;
+            if (target.move == Move.LPunch || target.move == Move.RPunch)
+            {
+                bManager.player.stamina = 0;
+            }
+            else if (!(target.move == dodge || target.move == Move.LPunch || target.move == Move.RPunch))
+            {
+                // Target does not dodge or punch back, apply damage to the target only
+                target.isHit = true;
+            }
         }
     }
+
+
     void Hit(AIController self, PlayerController target, Move punch, Move dodge)
     {
-        if (self.move == punch && target.move != dodge)
+        // Check if self uses punch
+        if (self.move == punch)
         {
-            target.isHit = true;
 
+            if (!(target.move == dodge || target.move == Move.LPunch || target.move == Move.RPunch))
+            {
+                // Target does not dodge or punch back, apply damage to the target only
+                target.isHit = true;
+            }
         }
     }
+
+
 }

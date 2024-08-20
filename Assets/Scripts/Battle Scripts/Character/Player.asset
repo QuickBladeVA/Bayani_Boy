@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   hp: 100
-  atk: 20
+  atk: 10
   spd: 3
