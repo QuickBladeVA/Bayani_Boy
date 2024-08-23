@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,6 +20,8 @@ public class BattleManager : MonoBehaviour
 
     public Move playerMove;
     public Move enemyMove;
+
+
 
     private void Awake()
     {
@@ -63,13 +66,15 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("Objects with Tag:Enemy is Missing or More than 1");
             }
-        } 
+        }
+        List<Move> Idle = new List<Move>() { Move.Idle, Move.Idle, Move.Idle };
+        enemy.ChangeMoveList(Idle);
     }
+
 
     private void Start()
     {
-        enemyObj.name = enemy.characterName;
-        playerObj.name = player.characterName;
+
     }
 
     IEnumerator Enemy(int speed)
@@ -81,7 +86,7 @@ public class BattleManager : MonoBehaviour
             // Check if the player is tired
             if (player.isTired && enemy.moveList!= Punch)
             {
-                enemy.ChangeMoveList(Punch);;
+                enemy.ChangeMoveList(Punch);
             }
 
             yield return new WaitForSeconds(0.8f);
@@ -92,7 +97,15 @@ public class BattleManager : MonoBehaviour
 
             if (enemy.isHit)
             {
-                enemy.health -= player.attack;
+                if (player.hasSuper)
+                {
+                    enemy.health -= player.attack*4;
+                    player.hasSuper = false;
+                }
+                else
+                {
+                    enemy.health -= player.attack;
+                }
                 enemy.Hit();
 
                 if (enemy.health <= 0)
@@ -106,7 +119,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator Player(int speed)
     {
-        while (player.isKnockedOut == false)
+        while (!player.isKnockedOut)
         {
                 yield return new WaitForSeconds(0.01f);
                 playerMove = player.move;
@@ -114,6 +127,12 @@ public class BattleManager : MonoBehaviour
                 {
                     player.health -= enemy.attack;
                     player.isHit = false;
+                    if (player.health <= 25 && !player.hasSuperGained) 
+                    {
+                        player.hasSuper= true;
+                        player.hasSuperGained = true;
+                    }
+
 
                     if (player.health <= 0)
                     {
@@ -121,6 +140,7 @@ public class BattleManager : MonoBehaviour
                     }
 
                 }
+                
         }
     }
 }

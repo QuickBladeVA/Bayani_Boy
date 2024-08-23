@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+        
     }
     // Update is called once per frame
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         switch (gameState)
-        {
+        {   
             case GameState.InGame:
                 if (bManager.player.isKnockedOut)
                 {

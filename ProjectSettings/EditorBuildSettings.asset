@@ -6,6 +6,39 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Fathom Studio.unity
+    guid: 5d4d606361c544c49925cef5c59564f0
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 8ba5315a651e2364a8d9de24eea8f723
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 097b52397cde9e4489bd8cd6690c0c15
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 1c65195aa8808dc4e88a94edbfef17d2
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: e6d3045464a41094d90c62c7302a1a08
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 5e5518aef594b49458c0ce1d338c1eb6
+  - enabled: 1
+    path: Assets/Scenes/TS.unity
+    guid: e069db95bd9db254699e31158dbe2695
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 77d4fa4e0934d9846945d77169200ecb
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 1.unity
+    guid: d2670b874c951f04bbdcbc831d4b522e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 2.unity
+    guid: 5f8facd8ca156d44b8730ee45241875e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 3.unity
+    guid: 1b4c6e73227bb5e48aa56e78e7a6486e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 4.unity
+    guid: 2996904740a79714e8bf771f394813d7
   m_configObjects: {}

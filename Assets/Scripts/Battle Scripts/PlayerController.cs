@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public bool isKnockedOut = false;
     public bool isHit;
     public bool isTired = false;
+    public bool hasSuper = false;
+    public bool hasSuperGained = false;
+
 
     KeyCode LPunchKey = KeyCode.Z;
     KeyCode RPunchKey = KeyCode.X;
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            if (stamina < 5 && isTired==false)
+            if (stamina < 5 && !isTired)
             {
                 yield return new WaitForSeconds(5f); // Wait for 5 seconds
                 stamina = 5; 

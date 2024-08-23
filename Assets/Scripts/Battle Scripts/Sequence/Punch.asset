@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee1c56fcbc5ef84eb0897fc7b153f90, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
-  moveList: 0100000002000000
+  moveList: 000000000100000002000000
