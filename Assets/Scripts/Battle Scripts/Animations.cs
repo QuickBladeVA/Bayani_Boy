@@ -53,6 +53,9 @@ public class Animations : MonoBehaviour
         eAS = eAnimator.gameObject.GetComponent<AudioSource>();
 
         StartCoroutine(AnimationSuper());
+
+        pAS.volume = 0.25f;
+        eAS.volume = 0.5f;
     }
 
     // Update is called once per frame
@@ -94,13 +97,12 @@ public class Animations : MonoBehaviour
         if (bManager.player.move != Move.LDodge && bManager.player.move != Move.RDodge)
             pDodgeSoundPlayed = false;
 
-        if (bManager.player.isTired)
+        if (bManager.player.isTired&& !bManager.player.isKnockedOut)
         {
             AnimationColor(pSR, Color.blue);
-            if (!bManager.player.isKnockedOut) 
-            { 
-                pAS.PlayOneShot(tired); 
-            }
+ 
+            pAS.PlayOneShot(tired); 
+            
         }
         else if (!bManager.player.isTired || bManager.player.isKnockedOut)
         {
@@ -200,11 +202,12 @@ public class Animations : MonoBehaviour
         {
             if (bManager.player.hasSuper && !bManager.player.isTired && !bManager.player.isKnockedOut)
             {
+                pAS.PlayOneShot(super);
                 yield return new WaitForSeconds(0.2f);
                 AnimationColor(pSR, Color.yellow);
                 yield return new WaitForSeconds(0.2f);
                 AnimationColor(pSR, Color.white);
-                pAS.PlayOneShot(super);
+
             }
             yield return null; // Wait for the next frame before rechecking
         }

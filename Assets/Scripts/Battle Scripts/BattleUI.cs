@@ -11,6 +11,8 @@ public class BattleUI : MonoBehaviour
 
     public Slider playerSlider;
     public Slider enemySlider;
+    public Slider playerStamina;
+    public Slider playerSuperPunch;
 
     public TextMeshProUGUI StaminaPoints;
 
@@ -23,6 +25,10 @@ public class BattleUI : MonoBehaviour
         {
             playerSlider.maxValue = bManager.player.health;
             playerSlider.value = bManager.player.health;
+            playerStamina.maxValue = 5;
+            playerStamina.value = bManager.player.stamina;
+            playerSuperPunch.maxValue = 75;
+            playerSuperPunch.value = bManager.player.superPunch;
 
             enemySlider.maxValue = bManager.enemy.health;
             enemySlider.value = bManager.player.health;
@@ -41,6 +47,8 @@ public class BattleUI : MonoBehaviour
     {
         playerSlider.value = bManager.player.health;
         enemySlider.value = bManager.enemy.health;
+        playerStamina.value = bManager.player.stamina;
+        playerSuperPunch.value = bManager.player.superPunch;
         StaminaPoints.text = bManager.player.stamina.ToString();
     }
 }

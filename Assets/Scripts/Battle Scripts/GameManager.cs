@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState { InGame,Pause, Win, Lose }
 
@@ -31,11 +32,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+
         
     }
     // Update is called once per frame
 
-
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     void Update()
     {
         switch (gameState)
@@ -71,6 +76,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.Win:
                 winUI.SetActive(true);
+                PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 2);
+
                 break;
 
             case GameState.Lose:

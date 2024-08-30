@@ -100,6 +100,7 @@ public class BattleManager : MonoBehaviour
                 if (player.hasSuper)
                 {
                     enemy.health -= player.attack*4;
+                    player.superPunch = 0;
                     player.hasSuper = false;
                 }
                 else
@@ -126,6 +127,7 @@ public class BattleManager : MonoBehaviour
                 if (player.isHit)
                 {
                     player.health -= enemy.attack;
+                    player.superPunch += enemy.attack;
                     player.isHit = false;
                     if (player.health <= 25 && !player.hasSuperGained) 
                     {

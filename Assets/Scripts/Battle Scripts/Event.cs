@@ -20,6 +20,8 @@ public class Event : MonoBehaviour
     public Sequence dodge;
     public Sequence special;
 
+    public LevelManager levelManager;
+
     private void Start()
     {
         bManager = BattleManager.instance;
@@ -27,8 +29,10 @@ public class Event : MonoBehaviour
 
     private void Update()
     {
+        
         if (bManager.enemy.health <= 20)
         {
+            PlayerPrefs.SetInt("Level", 2);
             SceneManager.LoadScene(sceneName);
         }
         if (Object.activeSelf) 

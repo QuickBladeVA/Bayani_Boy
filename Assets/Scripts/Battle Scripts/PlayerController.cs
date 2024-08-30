@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public Move move = Move.Idle;
 
     public string characterName;
-    public int health, attack, speed, stamina;
+    public int health, attack, speed, stamina, superPunch;
 
     public bool isKnockedOut = false;
     public bool isHit;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         {
             characterName = character.name;
             health = character.hp;
+            superPunch = 0;
             attack = character.atk;
             speed = character.spd;
             stamina = 5;
