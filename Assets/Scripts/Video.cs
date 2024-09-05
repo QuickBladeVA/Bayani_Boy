@@ -9,6 +9,11 @@ public class Video : MonoBehaviour
     public VideoPlayer videoPlayer;
     public string nextScene;
 
+    private void Awake()
+    {
+        Camera.main.aspect = 16f / 9f;
+    }
+
     private void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();

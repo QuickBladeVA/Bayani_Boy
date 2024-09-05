@@ -47,7 +47,7 @@ public class HitBox : MonoBehaviour
         {
             if (target.move == Move.LPunch || target.move == Move.RPunch)
             {
-                bManager.player.stamina = 0;
+                bManager.player.stamina -= 2;
             }
             else if (!(target.move == dodge || target.move == Move.LPunch || target.move == Move.RPunch))
             {

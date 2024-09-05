@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ReggieZord
   m_EditorClassIdentifier: 
   hp: 200
-  atk: 20
+  atk: 15
   spd: 0

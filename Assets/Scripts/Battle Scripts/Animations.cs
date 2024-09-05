@@ -31,6 +31,7 @@ public class Animations : MonoBehaviour
     bool eDodgeSoundPlayed;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +54,8 @@ public class Animations : MonoBehaviour
         eAS = eAnimator.gameObject.GetComponent<AudioSource>();
 
         StartCoroutine(AnimationSuper());
-
-        pAS.volume = 0.25f;
+        StartCoroutine(AnimationTired());
+        pAS.volume = 0.5f;
         eAS.volume = 0.5f;
     }
 
@@ -89,21 +90,20 @@ public class Animations : MonoBehaviour
 
         // Reset player sound flags based on conditions
         if (!bManager.player.isHit)
+        {
             pHitSoundPlayed = false;
+        }
 
         if (!bManager.player.isKnockedOut)
+        {
             pKnockedSoundPlayed = false;
+        }
 
         if (bManager.player.move != Move.LDodge && bManager.player.move != Move.RDodge)
-            pDodgeSoundPlayed = false;
-
-        if (bManager.player.isTired&& !bManager.player.isKnockedOut)
         {
-            AnimationColor(pSR, Color.blue);
- 
-            pAS.PlayOneShot(tired); 
-            
+            pDodgeSoundPlayed = false;
         }
+
         else if (!bManager.player.isTired || bManager.player.isKnockedOut)
         {
             if (!bManager.player.hasSuper)
@@ -143,13 +143,19 @@ public class Animations : MonoBehaviour
 
         // Reset enemy sound flags based on conditions
         if (!bManager.enemy.isHit)
+        {
             eHitSoundPlayed = false;
+        }
 
         if (!bManager.enemy.isKnockedOut)
+        {
             eKnockedSoundPlayed = false;
+        }
 
         if (bManager.enemy.move != Move.LDodge && bManager.enemy.move != Move.RDodge)
+        {
             eDodgeSoundPlayed = false;
+        }
     }
 
     private void AnimationState(Move move, Animator animator)
@@ -203,10 +209,25 @@ public class Animations : MonoBehaviour
             if (bManager.player.hasSuper && !bManager.player.isTired && !bManager.player.isKnockedOut)
             {
                 pAS.PlayOneShot(super);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.3f);
                 AnimationColor(pSR, Color.yellow);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.3f);
                 AnimationColor(pSR, Color.white);
+
+            }
+            yield return null; // Wait for the next frame before rechecking
+        }
+    }
+    IEnumerator AnimationTired() { 
+        while (true)
+        {
+            if (bManager.player.isTired && !bManager.player.isKnockedOut)
+            {
+                AnimationColor(pSR, Color.blue);
+                pAS.PlayOneShot(tired);
+                yield return new WaitForSeconds(1f);
+                AnimationColor(pSR, Color.white);
+
 
             }
             yield return null; // Wait for the next frame before rechecking

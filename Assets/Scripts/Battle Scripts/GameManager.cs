@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject winUI;
     public GameObject loseUI;
 
-    KeyCode pause = KeyCode.P;
+    KeyCode pause = KeyCode.Escape;
 
     private void Awake()
     {
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+        Camera.main.aspect = 16f / 9f;
 
-        
     }
     // Update is called once per frame
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         switch (gameState)
-        {   
+        {
             case GameState.InGame:
                 if (bManager.player.isKnockedOut)
                 {
@@ -76,14 +76,30 @@ public class GameManager : MonoBehaviour
 
             case GameState.Win:
                 winUI.SetActive(true);
-                PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 2);
+                StopGame();
+                if (PlayerPrefs.GetInt("Level") <= SceneManager.GetActiveScene().buildIndex + 2)
+                {
+                    PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex + 2);
+                }
 
                 break;
 
             case GameState.Lose:
                 loseUI.SetActive(true);
+                StopGame();
                 break;
         }
+
+    }
+
+    void StopGame() 
+    {
+        bManager.player.move = Move.Idle;
+        bManager.enemy.move = Move.Idle;
+
+        bManager.player.hasSuper = false;
+        bManager.player.isTired = false;
+        bManager.player.stamina = 5;
 
     }
 }

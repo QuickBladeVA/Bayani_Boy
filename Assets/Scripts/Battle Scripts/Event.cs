@@ -32,8 +32,12 @@ public class Event : MonoBehaviour
         
         if (bManager.enemy.health <= 20)
         {
-            PlayerPrefs.SetInt("Level", 2);
+            if (PlayerPrefs.GetInt("Level") < 1)
+            {
+                PlayerPrefs.SetInt("Level", 2);
+            }
             SceneManager.LoadScene(sceneName);
+
         }
         if (Object.activeSelf) 
         {

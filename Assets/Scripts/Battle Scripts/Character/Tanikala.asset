@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4f28164bc75114ab0c8f19324a8913, type: 3}
   m_Name: Tanikala
   m_EditorClassIdentifier: 
-  hp: 160
+  hp: 180
   atk: 5
   spd: 0

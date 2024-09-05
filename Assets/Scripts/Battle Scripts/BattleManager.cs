@@ -81,7 +81,7 @@ public class BattleManager : MonoBehaviour
     {
         List<Move> Punch = new List<Move>() { Move.LPunch, Move.RPunch };
 
-        while (enemy.isKnockedOut == false)
+        while (!player.isKnockedOut && !enemy.isKnockedOut)
         {
             // Check if the player is tired
             if (player.isTired && enemy.moveList!= Punch)
@@ -120,7 +120,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator Player(int speed)
     {
-        while (!player.isKnockedOut)
+        while (!player.isKnockedOut&&!enemy.isKnockedOut)
         {
                 yield return new WaitForSeconds(0.01f);
                 playerMove = player.move;

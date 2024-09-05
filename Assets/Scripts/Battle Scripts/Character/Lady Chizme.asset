@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Lady Chizme
   m_EditorClassIdentifier: 
   hp: 80
-  atk: 25
+  atk: 20
   spd: 0

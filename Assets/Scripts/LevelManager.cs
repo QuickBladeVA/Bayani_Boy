@@ -18,6 +18,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Camera.main.aspect = 16f / 9f;
+    }
+
     private void Update()
     {
         for (int l = 0; l < levels.Count; l++)
