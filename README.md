@@ -1,11 +1,11 @@
 # ![364723209-1021b42e-0928-4bc1-a249-dac2c3a2f13a](https://github.com/user-attachments/assets/67bdaa73-b860-4f18-be52-9f88b729f865)
 
-“Boy Banawag: Ang Unang Kislap” features a 2D Top Down Beat Em Up experience to provide a sense of familiarity and enriched gameplay among the players.
+“Boy Banawag: Ang Unang Kislap” features a 2D Top Down Fighting Beat Em Up experience to provide a sense of familiarity and enriched gameplay among the players.
 
 # Game Overview
 Game Name: Boy Banawag: Ang Unang Kislap
 
-Genre: 2D Pixel Top-down Beat 'Em Up
+Genre: 2D Pixel Top-down Fighting Beat 'Em Up
 
 Target Platform: PC
 
